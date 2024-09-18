@@ -8,6 +8,16 @@ This is a quick python script that will convert logseq-formatted markdown blocks
 
 TBD-- don't use this yet lol
 
+## Things you can use this for
+
+note: this is in the context of having slowly reformatted a lot of my life to operate off of plaintext, but here is a oneliner I was just able to run to show me all emails from any instutions that are likely to want money from me, from within the last week:
+
+```bash
+for name in $(lsqdata accounts.md csv | mlr --csv --headerless-csv-output uniq -g Institution); do notmuch search "from:$name date:1w"; done
+```
+
+Not even a script. a single command. I don't even have to maintain a separate csv file-- literally just convert on demand a handwritten note that I can also create live queries and views within logseq for. [Miller](https://miller.readthedocs.io/en/latest/) is also amazing, go check them out
+
 ## limitations
 
 - handle multi-word fieldnames(rec)/property names(markdown)-- since IIRC logseq doesn't allow property names to have spaces
