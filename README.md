@@ -10,6 +10,7 @@ TBD-- don't use this yet lol
 
 ## limitations
 
+- handle multi-word fieldnames(rec)/property names(markdown)-- since IIRC logseq doesn't allow property names to have spaces
 - no CSV input
 - no multiline text in rec or LSQ-markdown, not even sure how to translate that to csv yet
 - no record set identifiers in rec or page identifiers/nested blocks in LSQ markdown
