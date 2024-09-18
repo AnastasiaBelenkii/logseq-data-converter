@@ -1,0 +1,14 @@
+start: recfile_record+
+
+recfile_record: property+ NEWLINE
+
+property: KEY PROPERTY_SEPARATOR VALUE NEWLINE
+
+KEY: /[A-Za-z0-9_-]+/
+VALUE: /[^\n]+/
+PROPERTY_SEPARATOR: ":"
+
+NEWLINE: /\r?\n/
+_WHITESPACE: /[ \t\f]+/
+
+%ignore _WHITESPACE

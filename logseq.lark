@@ -1,0 +1,20 @@
+start: block+
+
+block: firstline property*
+
+firstline: BLOCK_START MARKDOWN_TEXT? NEWLINE
+
+MARKDOWN_TEXT: /[^\n]+/  // Matches arbitrary text until a newline
+
+property: INDENT KEY PROPERTY_SEPARATOR VALUE NEWLINE
+
+KEY: /[A-Za-z0-9_-]+/
+VALUE: /[^\n]+/
+
+BLOCK_START: "- "
+PROPERTY_SEPARATOR: "::"
+INDENT: "  " | "\t" | "    "
+
+%import common.WS
+%ignore WS
+%import common.NEWLINE
