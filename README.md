@@ -1,4 +1,4 @@
-**KINDA BROKEN-- STILL IN DEVELOPMENT-- USE AT OWN RISK-- THIS CODE IS VERY BAD**
+**KINDA BROKEN-- STILL IN DEVELOPMENT-- USE AT OWN RISK-- THIS CODE IS VERY BAD-- NO TESTS ANYWHERE**
 
 ## Intro and Rationale
 
@@ -6,7 +6,14 @@ This is a quick python script that will convert logseq-formatted markdown blocks
 
 ## Install and Usage
 
-TBD-- don't use this yet lol
+The procedure below is far from ideal, but it's how I'm currently using the script myself. I recommend not using this until I have a proper working module on pip somewhere
+
+1. git clone to {install_dir}
+2. `chmod +x main.py` and `chmod +x lsqdata.sh`
+3. `sudo update-alternatives --install /usr/local/bin/lsqdata lsqdata {install_dir}/lsqdata.sh 50`
+  - make sure to use a full absolute path for {install_dir}
+
+Or just copy the sh file somewhere into the path.
 
 ## Things you can use this for
 
@@ -18,21 +25,21 @@ for name in $(lsqdata accounts.md csv | mlr --csv --headerless-csv-output uniq -
 
 Not even a script. a single command. I don't even have to maintain a separate csv file-- literally just convert on demand a handwritten note that I can also create live queries and views within logseq for. [Miller](https://miller.readthedocs.io/en/latest/) is also amazing, go check them out
 
+[Just going to drop this here as well](https://github.com/hauntsaninja/pyp)
+
 ## limitations
 
 - handle multi-word fieldnames(rec)/property names(markdown)-- since IIRC logseq doesn't allow property names to have spaces
 - no CSV input
 - no multiline text in rec or LSQ-markdown, not even sure how to translate that to csv yet
 - no record set identifiers in rec or page identifiers/nested blocks in LSQ markdown
-- all input formats need a newline at the end of the input or they won't be parsed
-   - for now, possibly forever??
-    - https://github.com/lark-parser/lark/discussions/1041 ):
 - not even an actual module and using it on own machine using terrible shell script
 - rec to csv is broken
     - not sure how much this matters given that rec2csv exists but FYI
 
 ## longer term plans
 
+- at least some type of testing lol
 - JSON I/O
 - YAML, TOML I/O
 - addressing some of the limitations above-- CSV input, multiline text fields, better handling of markdown features in conversions, nested blocks in LSQ markdown

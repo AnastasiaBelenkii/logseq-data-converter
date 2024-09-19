@@ -145,8 +145,20 @@ def intermediate_to_csv(intermediate):
 
     return '\n'.join(rows)
 
+def ensure_blank_lines(file_path):
+    file_path = Path(file_path)  # Ensure file_path is a Path object
+    with open(file_path, 'r+') as file:
+        content = file.read()
+        file.seek(0, 2)  # Move to the end of the file
+        if file_path.suffix == '.md':
+            if not content.endswith('\n'):
+                file.write('\n')
+        elif file_path.suffix == '.rec':
+            if not content.endswith('\n\n'):
+                file.write('\n' * (2 - content.count('\n', -2)))
 
 def convert_format(input_file, output_format, verbose=False):
+    ensure_blank_lines(input_file)
     intermediate = convert_to_intermediate(input_file, verbose)
     if output_format == 'recfile':
         return intermediate_to_recfile(intermediate)
